@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{mediabb}
+\usepackage{pythontex}
+\begin{document}
+
+\begin{pycode}
+import matplotlib.pyplot as plt
+import numpy as np
+
+## 図の作成
+def draw_func(x, y, name):
+  plt.figure(figsize=(10, 7))
+  plt.plot(x, y)
+  plt.savefig('{}.png'.format(name))
+
+def sin():
+  x = np.arange(-3, 3, 0.01)
+  y = np.sin(x)
+  draw_func(x, y, 'sin')
+  
+def cos():
+  x = np.arange(-3, 3, 0.01)
+  y = np.cos(x)
+  draw_func(x, y, 'cos')
+
+def exp():
+  x = np.arange(-3, 3, 0.01)
+  y = np.exp(x)
+  draw_func(x, y, 'exp')
+
+def square():
+  x = np.arange(-3, 3, 0.01)
+  y = np.square(x)
+  draw_func(x, y, 'square')
+
+  # ファイル名、caption, labelの指定
+images = [ \
+  ('sin.png', 'sin curve', 'sin'), \
+  ('cos.png', 'cos curve', 'cos'), \
+  ('exp.png', 'exp curve', 'exp'), \
+  ('square.png', 'square curve', 'square'), \
+  ]
+
+def insert_grid_images(): # 2*N grid
+  # 図の生成
+  sin()
+  cos()
+  exp()
+  square()
+
+  # Gridで表示するためにfigure環境にminipageを作る
+  head = r"\begin{figure}[ht]"
+  
+  # 反復部分
+  content = ""
+  for i in images:
+    tmp = r"\
+    \begin{minipage}[ht]{0.48\textwidth} \
+      \centering \
+      \includegraphics[width= 6 cm]{FILENAME} \
+      \caption{CAPTION} \
+      \label{LABEL} \
+    \end{minipage} \
+    \hfill"
+    property = {
+      "FILENAME" : i[0],
+      "CAPTION" : i[1],
+      "LABEL" : i[2],  
+    }
+    # ファイル名、caption, labelを置換
+    for key, value in property.items():
+      tmp = tmp.replace(key, value)
+
+    content += tmp
+
+  foot = r"\end{figure}"
+
+  # 生成した文字列を返す
+  return head+content+foot
+\end{pycode}  
+
+
+sin curve(Figure \ref{sin}), % 引用も可能
+cos curve(Figure \ref{cos}), 
+exp curve(Figure \ref{exp}), 
+square curve(Figure \ref{square})
+
+% ここでinsert_grid_images()を実行し、texのコードを出力する
+\py{insert_grid_images()}
+
+
+\end{document}

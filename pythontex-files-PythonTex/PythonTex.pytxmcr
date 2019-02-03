@@ -1,0 +1,33 @@
+%Last time of file creation:  1549172004.546051
+
+\pytx@SVMCR{pytx@MCR@py@default@default@1}
+\begin{figure}[ht]\
+    \begin{minipage}[ht]{0.48\textwidth} \
+      \centering \
+      \includegraphics[width= 6 cm]{sin.png} \
+      \caption{sin curve} \
+      \label{sin} \
+    \end{minipage} \
+    \hfill\
+    \begin{minipage}[ht]{0.48\textwidth} \
+      \centering \
+      \includegraphics[width= 6 cm]{cos.png} \
+      \caption{cos curve} \
+      \label{cos} \
+    \end{minipage} \
+    \hfill\
+    \begin{minipage}[ht]{0.48\textwidth} \
+      \centering \
+      \includegraphics[width= 6 cm]{exp.png} \
+      \caption{exp curve} \
+      \label{exp} \
+    \end{minipage} \
+    \hfill\
+    \begin{minipage}[ht]{0.48\textwidth} \
+      \centering \
+      \includegraphics[width= 6 cm]{square.png} \
+      \caption{square curve} \
+      \label{square} \
+    \end{minipage} \
+    \hfill\end{figure}\endpytx@SVMCR
+
